@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Chat - Local Network</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-wifi"></i> WiFi Chat Room</h1>
+            <div class="connection-status">
+                <span id="status">Disconnected</span>
+                <div class="status-indicator" id="statusIndicator"></div>
+            </div>
+        </header>
+
+        <div class="setup-panel" id="setupPanel">
+            <h2><i class="fas fa-cogs"></i> Setup</h2>
+            <div class="setup-instructions">
+                <p><strong>How to use:</strong></p>
+                <ol>
+                    <li>Open this page on all devices connected to the same WiFi</li>
+                    <li>One device creates a room (Host)</li>
+                    <li>Other devices join using the same room name</li>
+                </ol>
+            </div>
+            
+            <div class="setup-controls">
+                <div class="input-group">
+                    <label for="username"><i class="fas fa-user"></i> Your Name</label>
+                    <input type="text" id="username" placeholder="Enter your name" maxlength="20">
+                </div>
+                
+                <div class="input-group">
+                    <label for="roomName"><i class="fas fa-door-closed"></i> Room Name</label>
+                    <input type="text" id="roomName" placeholder="Enter room name" value="WiFi-Chat">
+                </div>
+                
+                <div class="button-group">
+                    <button id="createRoomBtn" class="btn btn-primary">
+                        <i class="fas fa-plus-circle"></i> Create Room
+                    </button>
+                    <button id="joinRoomBtn" class="btn btn-secondary">
+                        <i class="fas fa-sign-in-alt"></i> Join Room
+                    </button>
+                </div>
+                
+                <div class="room-info" id="roomInfo" style="display: none;">
+                    <p><i class="fas fa-info-circle"></i> Room: <span id="currentRoom"></span></p>
+                    <p><i class="fas fa-users"></i> Connected: <span id="userCount">0</span> users</p>
+                    <button id="copyLinkBtn" class="btn btn-small">
+                        <i class="fas fa-link"></i> Copy Join Link
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container" id="chatContainer" style="display: none;">
+            <div class="users-sidebar">
+                <h3><i class="fas fa-users"></i> Online Users</h3>
+                <ul id="usersList"></ul>
+            </div>
+            
+            <div class="chat-main">
+                <div class="messages" id="messages"></div>
+                
+                <div class="message-input">
+                    <input type="text" id="messageInput" placeholder="Type your message..." maxlength="500">
+                    <button id="sendBtn" class="btn btn-send">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+                
+                <div class="chat-controls">
+                    <button id="clearChatBtn" class="btn btn-small">
+                        <i class="fas fa-trash"></i> Clear Chat
+                    </button>
+                    <button id="leaveRoomBtn" class="btn btn-small btn-danger">
+                        <i class="fas fa-sign-out-alt"></i> Leave Room
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Works on any device connected to the same WiFi network</p>
+            <p class="device-id">Device ID: <span id="deviceId"></span></p>
+        </footer>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
